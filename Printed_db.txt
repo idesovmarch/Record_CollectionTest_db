@@ -1,0 +1,274 @@
+1. List which genre id corresponds to each artist.
+
+SELECT ARTIST_NAME, GENRE_ID
+FROM ARTIST;
+
+
++---------------------------+----------+
+| ARTIST_NAME               | GENRE_ID |
++---------------------------+----------+
+| Shai Hulud                |        7 |
+| Converge                  |        7 |
+| Smith Westerns            |        2 |
+| Viu/Mire                  |        6 |
+| Manilla Road              |        4 |
+| earth                     |        8 |
+| Explosions in the Sky     |        5 |
+| Wolves in the Throne Room |        1 |
+| Ty Segall                 |        3 |
+| Fleet Foxes               |       10 |
+| Young Widows              |        9 |
+| 1,2,3's                   |        2 |
+| Touche Amore              |        7 |
+| The Mountain Goats        |       10 |
+| Chappo                    |        2 |
+| alvvays                   |        3 |
+| Beach House               |        2 |
+| Thee Oh Sees              |        3 |
+| Father John Misty         |       10 |
+| Titus Andronicus          |        3 |
+| Mono                      |        5 |
+| Deafheaven                |        1 |
+| Drudkh                    |        1 |
++---------------------------+----------+
+
+
+2. Which artists have a genre_id of 1?
+
+SELECT ARTIST_NAME, GENRE_ID
+FROM ARTIST
+WHERE GENRE_ID = 1;
+
++---------------------------+----------+
+| ARTIST_NAME               | GENRE_ID |
++---------------------------+----------+
+| Wolves in the Throne Room |        1 |
+| Deafheaven                |        1 |
+| Drudkh                    |        1 |
++---------------------------+----------+
+
+3. Which albums are by artist_num 8 and are of genre_num 1?
+
+SELECT ALBUM_NAME
+FROM ALBUM
+WHERE GENRE_GENRE_ID = 1
+AND ARTIST_ARTIST_NUM = 8;
+
++-------------------+
+| ALBUM_NAME        |
++-------------------+
+| Celestite         |
+| Celestial Lineage |
++-------------------+
+
+4. Select the genre_name with a genre_id of 1.
+
+SELECT GENRE_NAME
+FROM GENRE
+WHERE GENRE_ID LIKE 1;
+
++-------------+
+| GENRE_NAME  |
++-------------+
+| black metal |
++-------------+
+
+5. How many genres are listed in the genre table?
+
+SELECT COUNT(GENRE_NAME) FROM GENRE;
+
++-------------------+
+| COUNT(GENRE_NAME) |
++-------------------+
+|                10 |
++-------------------+
+
+6. Show which artists correspond to which albums, order them by artist name.
+
+SELECT ARTIST.ARTIST_NAME, ALBUM.ALBUM_NAME
+FROM ARTIST
+INNER JOIN ALBUM
+ON ARTIST.ARTIST_NUM=ALBUM.ARTIST_ARTIST_NUM
+GROUP BY ARTIST.ARTIST_NAME;
+
++---------------------------+---------------------------------------------------------------------------------+
+| ARTIST_NAME               | ALBUM_NAME                                                                      |
++---------------------------+---------------------------------------------------------------------------------+
+| 1,2,3's                   | Confetti                                                                        |
+| alvvays                   | alvvays                                                                         |
+| Beach House               | Bloom                                                                           |
+| Chappo                    | Future Former Self                                                              |
+| Converge                  | Axe to fall                                                                     |
+| Deafheaven                | Sunbather                                                                       |
+| Drudkh                    | Autumn Aurora                                                                   |
+| earth                     | 2: special low frequency version                                                |
+| Explosions in the Sky     | those who tell the truth shall die, those who tell the truth shall live forever |
+| Father John Misty         | I Love You Honeybear                                                            |
+| Fleet Foxes               | Fleet Foxes                                                                     |
+| Manilla Road              | Crystal Logic                                                                   |
+| Mono                      | You are There                                                                   |
+| Shai Hulud                | That Within Blood Ill Tempered                                                  |
+| Smith Westerns            | Dye it Blonde                                                                   |
+| The Mountain Goats        | The Sunset Tree                                                                 |
+| Thee Oh Sees              | Putrifiers II                                                                   |
+| Titus Andronicus          | The Monitor                                                                     |
+| Touche Amore              | Split                                                                           |
+| Ty Segall                 | Twins                                                                           |
+| Viu/Mire                  | Self Titled                                                                     |
+| Wolves in the Throne Room | Celestite                                                                       |
+| Young Widows              | Old Wounds                                                                      |
++---------------------------+---------------------------------------------------------------------------------+
+
+7. Which artists correspond to which albums?
+
+SELECT ARTIST.ARTIST_NAME, ALBUM.ALBUM_NAME
+FROM ARTIST
+INNER JOIN ALBUM
+ON ARTIST.ARTIST_NUM=ALBUM.ARTIST_ARTIST_NUM;
+
++---------------------------+---------------------------------------------------------------------------------+
+| ARTIST_NAME               | ALBUM_NAME                                                                      |
++---------------------------+---------------------------------------------------------------------------------+
+| Shai Hulud                | That Within Blood Ill Tempered                                                  |
+| Converge                  | Axe to fall                                                                     |
+| Smith Westerns            | Dye it Blonde                                                                   |
+| Viu/Mire                  | Self Titled                                                                     |
+| Manilla Road              | Crystal Logic                                                                   |
+| earth                     | 2: special low frequency version                                                |
+| Explosions in the Sky     | those who tell the truth shall die, those who tell the truth shall live forever |
+| Wolves in the Throne Room | Celestite                                                                       |
+| Wolves in the Throne Room | Celestial Lineage                                                               |
+| Ty Segall                 | Twins                                                                           |
+| Fleet Foxes               | Fleet Foxes                                                                     |
+| Fleet Foxes               | Helplessness Blues                                                              |
+| Young Widows              | Old Wounds                                                                      |
+| 1,2,3's                   | Confetti                                                                        |
+| Touche Amore              | Split                                                                           |
+| The Mountain Goats        | The Sunset Tree                                                                 |
+| Chappo                    | Future Former Self                                                              |
+| alvvays                   | alvvays                                                                         |
+| Beach House               | Bloom                                                                           |
+| Thee Oh Sees              | Putrifiers II                                                                   |
+| Father John Misty         | I Love You Honeybear                                                            |
+| Titus Andronicus          | The Monitor                                                                     |
+| Mono                      | You are There                                                                   |
+| Deafheaven                | Sunbather                                                                       |
+| Drudkh                    | Autumn Aurora                                                                   |
++---------------------------+---------------------------------------------------------------------------------+
+
+
+8. Select artists with genre_id's of 1, 2 and 3.
+
+SELECT ARTIST_NAME
+FROM ARTIST
+WHERE GENRE_ID IN (1,2,3);
+
++---------------------------+
+| ARTIST_NAME               |
++---------------------------+
+| Smith Westerns            |
+| Wolves in the Throne Room |
+| Ty Segall                 |
+| 1,2,3's                   |
+| Chappo                    |
+| alvvays                   |
+| Beach House               |
+| Thee Oh Sees              |
+| Titus Andronicus          |
+| Deafheaven                |
+| Drudkh                    |
++---------------------------+
+
+9. Select the artist_name from artist whose genre_id is greater than 5
+
+SELECT ARTIST_NAME
+FROM ARTIST
+WHERE GENRE_ID IN(
+SELECT GENRE_ID
+FROM ARTIST
+WHERE GENRE_ID > 5);
+
++--------------------+
+| ARTIST_NAME        |
++--------------------+
+| Shai Hulud         |
+| Converge           |
+| Viu/Mire           |
+| earth              |
+| Fleet Foxes        |
+| Young Widows       |
+| Touche Amore       |
+| The Mountain Goats |
+| Father John Misty  |
++--------------------+
+
+10. Matche each artist name to it's corresponding genre name.
+
+
+SELECT ARTIST.ARTIST_NAME, GENRE.GENRE_NAME
+FROM ARTIST
+INNER JOIN GENRE
+ON ARTIST.GENRE_ID=GENRE.GENRE_ID;
+
++---------------------------+-------------------+
+| ARTIST_NAME               | GENRE_NAME        |
++---------------------------+-------------------+
+| Wolves in the Throne Room | black metal       |
+| Deafheaven                | black metal       |
+| Drudkh                    | black metal       |
+| Smith Westerns            | pop               |
+| 1,2,3's                   | pop               |
+| Chappo                    | pop               |
+| Beach House               | pop               |
+| Ty Segall                 | garage            |
+| alvvays                   | garage            |
+| Thee Oh Sees              | garage            |
+| Titus Andronicus          | garage            |
+| Manilla Road              | traditional metal |
+| Explosions in the Sky     | post-rock         |
+| Mono                      | post-rock         |
+| Viu/Mire                  | instrumental      |
+| Shai Hulud                | hardcore          |
+| Converge                  | hardcore          |
+| Touche Amore              | hardcore          |
+| earth                     | drone             |
+| Young Widows              | sludge            |
+| Fleet Foxes               | folk              |
+| The Mountain Goats        | folk              |
+| Father John Misty         | folk              |
++---------------------------+-------------------+
+
+11. Select all artists with a genre_id greater than 1.
+
+
+ SELECT ARTIST_NAME
+FROM ARTIST
+WHERE GENRE_ID =ANY
+(SELECT GENRE_ID
+FROM ARTIST
+WHERE GENRE_ID > 1);
+
++-----------------------+
+| ARTIST_NAME           |
++-----------------------+
+| Shai Hulud            |
+| Converge              |
+| Smith Westerns        |
+| Viu/Mire              |
+| Manilla Road          |
+| earth                 |
+| Explosions in the Sky |
+| Ty Segall             |
+| Fleet Foxes           |
+| Young Widows          |
+| 1,2,3's               |
+| Touche Amore          |
+| The Mountain Goats    |
+| Chappo                |
+| alvvays               |
+| Beach House           |
+| Thee Oh Sees          |
+| Father John Misty     |
+| Titus Andronicus      |
+| Mono                  |
++-----------------------+
